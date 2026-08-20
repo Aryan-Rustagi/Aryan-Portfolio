@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aryan Rustagi — BTech CSE student at JECRC Kalvium. Full-stack developer skilled in MERN, Docker, Linux, and more. Explore my portfolio." />
+  <title>Aryan Rustagi | Full-Stack Developer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+
+  <!-- Vanilla Tilt -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <span class="logo-text">AR</span>
+      <span class="logo-dot">.</span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" class="nav-link" data-section="hero">Home</a></li>
+      <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+      <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+      <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+      <li><a href="#education" class="nav-link" data-section="education">Education</a></li>
+      <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <section class="hero" id="hero">
+    <canvas id="heroCanvas"></canvas>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Available for Internships
+      </div>
+      <h1 class="hero-name">
+        <span class="name-line" id="nameGreet">Hey, I'm</span>
+        <span class="name-line name-main" id="nameMain">Aryan Rustagi</span>
+      </h1>
+      <div class="hero-role">
+        <span class="role-prefix">I build </span>
+        <span class="role-typed" id="roleTyped"></span>
+        <span class="role-cursor">|</span>
+      </div>
+      <p class="hero-desc">
+        BTech CSE · 2nd Year · JECRC Kalvium<br/>
+        Crafting scalable full-stack experiences with a love for clean code & beautiful UIs.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary" id="btnProjects">
+          <span>View Projects</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num" data-target="10">0</span><span class="stat-plus">+</span>
+          <span class="stat-label">Technologies</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="5">0</span><span class="stat-plus">+</span>
+          <span class="stat-label">Projects Built</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="2">0</span>
+          <span class="stat-label">Years in CSE</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Scroll to explore</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
+  <section class="section about-section" id="about">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag">01 — About</span>
+        <h2 class="section-title reveal-up">Who Am I?</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card-3d" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+          <div class="about-avatar-wrap">
+            <div class="avatar-ring"></div>
+            <div class="avatar-core">
+              <span class="avatar-initials">AR</span>
+            </div>
+            <div class="avatar-orbit">
+              <div class="orbit-dot" style="--i:0"></div>
+              <div class="orbit-dot" style="--i:1"></div>
+              <div class="orbit-dot" style="--i:2"></div>
+            </div>
+          </div>
+          <div class="about-card-info">
+            <p class="about-card-name">Aryan Rustagi</p>
+            <p class="about-card-role">Full-Stack Developer</p>
+            <div class="about-card-tags">
+              <span class="tag">MERN</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Linux</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-text-block reveal-up">
+          <p class="about-lead">
+            I'm a passionate <strong>full-stack developer</strong> and a BTech Computer Science student, obsessed with building things that live on the internet.
+          </p>
+          <p class="about-body">
+            Currently in my 2nd year at <strong>JECRC Kalvium</strong>, I love turning ideas into production-ready applications. My stack spans front-end polish, robust backend APIs, and containerized cloud deployments.
+          </p>
+          <p class="about-body">
+            Beyond code, I'm into problem-solving with Java, understanding system internals on Linux, and continuously learning what's next in tech.
+          </p>
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <div class="highlight-icon">🎓</div>
+              <div>
+                <strong>JECRC Kalvium</strong>
+                <span>BTech CSE, 2nd Year</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">📍</div>
+              <div>
+                <strong>India</strong>
+                <span>Open to remote / relocation</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">🚀</div>
+              <div>
+                <strong>Goal</strong>
+                <span>Build, Ship, Repeat</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ SKILLS ═══════════════════════════ -->
+  <section class="section skills-section" id="skills">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag">02 — Skills</span>
+        <h2 class="section-title reveal-up">My Tech Stack</h2>
+        <p class="section-subtitle reveal-up">Technologies I work with every day</p>
+      </div>
+
+      <div class="skills-categories">
+
+        <!-- Frontend -->
+        <div class="skill-category reveal-up">
+          <h3 class="category-title">
+            <span class="cat-icon">🎨</span> Frontend
+          </h3>
+          <div class="skill-cards-row">
+            <div class="skill-card" data-tilt data-tilt-max="15" data-tilt-speed="400">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" />
+              </div>
+              <span class="skill-name">HTML5</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="92"></div></div>
+            </div>
+            <div class="skill-card" data-tilt data-tilt-max="15" data-tilt-speed="400">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" />
+              </div>
+              <span class="skill-name">CSS3</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+            </div>
+            <div class="skill-card" data-tilt data-tilt-max="15" data-tilt-speed="400">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+              </div>
+              <span class="skill-name">JavaScript</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-card" data-tilt data-tilt-max="15" data-tilt-speed="400">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
+              </div>
+              <span class="skill-name">React.js</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="skill-category reveal-up">
+          <h3 class="category-title">
+            <span class="cat-icon">⚙️</span> Backend & Database
+          </h3>
+          <div class="skill-cards-row">
+            <div class="skill-card" data-tilt data-tilt-max="15" data-tilt-speed="400">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" />
+              </div>
+              <span class="skill-name">Node.js</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+            </div>
+            <div class="skill-card" data-tilt data-tilt-max="15" data-tilt-speed="400">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" style="filter:invert(1)" />
+              </div>
+              <span class="skill-name">Express.js</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+            </div>
+            <div class="skill-card" data-tilt data-tilt-max="15" data-tilt-speed="400">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
+              </div>
+              <span class="skill-name">MongoDB</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+            </div>
+            <div class="skill-card" data-tilt data-tilt-max="15" data-tilt-speed="400">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
+              </div>
+              <span class="skill-name">Java (OOPs)</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DevOps & Cloud -->
+        <div class="skill-category reveal-up">
+          <h3 class="category-title">
+            <span class="cat-icon">🚀</span> DevOps & Cloud
+          </h3>
+          <div class="skill-cards-row">
+            <div class="skill-card" data-tilt data-tilt-max="15" data-tilt-speed="400">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" />
+              </div>
+              <span class="skill-name">Docker</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="72"></div></div>
+            </div>
+            <div class="skill-card" data-tilt data-tilt-max="15" data-tilt-speed="400">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" />
+              </div>
+              <span class="skill-name">Linux</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="74"></div></div>
+            </div>
+            <div class="skill-card" data-tilt data-tilt-max="15" data-tilt-speed="400">
+              <div class="skill-icon">
+                <svg width="36" height="36" viewBox="0 0 76 65" fill="none"><path d="M37.532 16.87c-2.852.023-5.886.774-7.807 2.496-4.73 4.18-4.3 12.396-4.3 12.396L37.532 16.87z" fill="#fff"/><path d="M37.532 16.87L25.425 31.762s1.5 8.617 7.81 10.47c5.26 1.554 7.19-3.127 7.19-3.127l-2.894-22.234z" fill="#e2e2e2"/><path d="M37.532 16.87l2.893 22.235s3.59 4.26 8.11 1.617c5.39-3.12 5.397-12.087 5.397-12.087L37.532 16.87z" fill="#fff"/></svg>
+              </div>
+              <span class="skill-name">Vercel</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+            </div>
+            <div class="skill-card" data-tilt data-tilt-max="15" data-tilt-speed="400">
+              <div class="skill-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#0F172A"/><text x="12" y="17" font-size="11" text-anchor="middle" fill="#a78bfa" font-family="monospace" font-weight="bold">R</text></svg>
+              </div>
+              <span class="skill-name">Railway & Render</span>
+              <div class="skill-bar"><div class="skill-fill" data-width="76"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Big floating badge stack -->
+      <div class="mern-badge reveal-up" data-tilt data-tilt-max="5">
+        <span class="mern-text">MERN Stack Developer</span>
+        <div class="mern-icons">
+          <span title="MongoDB">M</span>
+          <span title="Express">E</span>
+          <span title="React">R</span>
+          <span title="Node.js">N</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ PROJECTS ═══════════════════════════ -->
+  <section class="section projects-section" id="projects">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag">03 — Projects</span>
+        <h2 class="section-title reveal-up">What I've Built</h2>
+        <p class="section-subtitle reveal-up">A selection of things I'm proud of</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <div class="project-card reveal-card" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
+          <div class="project-card-glow" style="--glow-color: #7c3aed;"></div>
+          <div class="project-card-header">
+            <div class="project-num">01</div>
+            <div class="project-links">
+              <a href="#" class="project-link-btn" aria-label="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+              <a href="#" class="project-link-btn" aria-label="Live Demo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Full-Stack Social App</h3>
+          <p class="project-desc">A MERN stack social media application with real-time updates, JWT authentication, image uploads, and a responsive feed UI.</p>
+          <div class="project-tech">
+            <span>React</span><span>Node.js</span><span>MongoDB</span><span>Express</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal-card" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
+          <div class="project-card-glow" style="--glow-color: #06b6d4;"></div>
+          <div class="project-card-header">
+            <div class="project-num">02</div>
+            <div class="project-links">
+              <a href="#" class="project-link-btn" aria-label="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+              <a href="#" class="project-link-btn" aria-label="Live Demo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Dockerized REST API</h3>
+          <p class="project-desc">A containerized Node.js REST API with Docker Compose, deployed on Railway with MongoDB Atlas integration and CI/CD pipeline.</p>
+          <div class="project-tech">
+            <span>Node.js</span><span>Docker</span><span>Railway</span><span>MongoDB</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal-card" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
+          <div class="project-card-glow" style="--glow-color: #10b981;"></div>
+          <div class="project-card-header">
+            <div class="project-num">03</div>
+            <div class="project-links">
+              <a href="#" class="project-link-btn" aria-label="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+              <a href="#" class="project-link-btn" aria-label="Live Demo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Problem Solving Dashboard</h3>
+          <p class="project-desc">An interactive dashboard tracking DSA progress, built with Java backend logic and a React frontend, deployed on Vercel and Render.</p>
+          <div class="project-tech">
+            <span>React</span><span>Java</span><span>Vercel</span><span>Render</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal-card" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.15">
+          <div class="project-card-glow" style="--glow-color: #f59e0b;"></div>
+          <div class="project-card-header">
+            <div class="project-num">04</div>
+            <div class="project-links">
+              <a href="#" class="project-link-btn" aria-label="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+              <a href="#" class="project-link-btn" aria-label="Live Demo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Linux Shell Toolkit</h3>
+          <p class="project-desc">A collection of custom Bash scripts and Linux utilities for automating dev workflows, file management, and system monitoring.</p>
+          <div class="project-tech">
+            <span>Linux</span><span>Bash</span><span>Shell</span><span>Automation</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ EDUCATION ═══════════════════════════ -->
+  <section class="section education-section" id="education">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag">04 — Education</span>
+        <h2 class="section-title reveal-up">Academic Journey</h2>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item reveal-timeline" data-side="left">
+          <div class="timeline-dot">
+            <div class="dot-ring"></div>
+            <div class="dot-core"></div>
+          </div>
+          <div class="timeline-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+            <div class="timeline-year">2023 – Present</div>
+            <div class="timeline-badge current">Current</div>
+            <h3 class="timeline-title">BTech — Computer Science & Engineering</h3>
+            <p class="timeline-institution">🏛️ JECRC Kalvium, Jaipur, Rajasthan</p>
+            <p class="timeline-desc">Specializing in full-stack development, system design, and modern deployment practices. Active member of the coding community.</p>
+            <div class="timeline-skills">
+              <span>MERN</span><span>Docker</span><span>Linux</span><span>Java</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-timeline" data-side="right">
+          <div class="timeline-dot">
+            <div class="dot-ring"></div>
+            <div class="dot-core"></div>
+          </div>
+          <div class="timeline-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+            <div class="timeline-year">2022 – 2023</div>
+            <h3 class="timeline-title">Class 12th — PCM + Computer Science</h3>
+            <p class="timeline-institution">🏫 M.D. Memorial Public School, Delhi</p>
+            <p class="timeline-desc">Completed higher secondary education with Computer Science, laying the foundation for my programming journey.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-timeline" data-side="left">
+          <div class="timeline-dot">
+            <div class="dot-ring"></div>
+            <div class="dot-core"></div>
+          </div>
+          <div class="timeline-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+            <div class="timeline-year">2020 – 2021</div>
+            <h3 class="timeline-title">Class 10th — ICSE Board</h3>
+            <p class="timeline-institution">🏫 Sacred Heart Senior Secondary School, Dharamshala, HP</p>
+            <p class="timeline-desc">Completed ICSE board with a strong academic foundation from the foothills of the Himalayas.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ CONTACT ═══════════════════════════ -->
+  <section class="section contact-section" id="contact">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag">05 — Contact</span>
+        <h2 class="section-title reveal-up">Let's Connect</h2>
+        <p class="section-subtitle reveal-up">Have a project in mind or want to chat? Reach out!</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal-up">
+          <div class="contact-card" data-tilt data-tilt-max="8" data-tilt-speed="400">
+            <div class="contact-glow"></div>
+            <h3>Open to Opportunities</h3>
+            <p>I'm actively looking for internships and freelance projects. Whether it's a full-stack web app, API, or deployment pipeline — let's build something great together.</p>
+            <div class="contact-links">
+              <a href="mailto:aryan@example.com" class="contact-link" id="emailLink">
+                <div class="contact-link-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <span>aryan@example.com</span>
+              </a>
+              <a href="https://github.com/AryanRustagi" target="_blank" class="contact-link" id="githubLink">
+                <div class="contact-link-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                </div>
+                <span>github.com/AryanRustagi</span>
+              </a>
+              <a href="https://linkedin.com/in/aryan-rustagi" target="_blank" class="contact-link" id="linkedinLink">
+                <div class="contact-link-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                </div>
+                <span>linkedin.com/in/aryan-rustagi</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal-up" id="contactForm">
+          <div class="form-group">
+            <label for="nameInput">Your Name</label>
+            <input type="text" id="nameInput" placeholder="John Doe" autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="emailInput">Email Address</label>
+            <input type="email" id="emailInput" placeholder="john@example.com" autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="messageInput">Message</label>
+            <textarea id="messageInput" rows="5" placeholder="Tell me about your project..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary btn-full" id="submitBtn">
+            <span>Send Message</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">AR<span class="logo-dot">.</span></div>
+      <p class="footer-text">Crafted with ❤️ by <strong>Aryan Rustagi</strong> · 2024</p>
+      <p class="footer-text footer-sub">BTech CSE · JECRC Kalvium · Jaipur</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
