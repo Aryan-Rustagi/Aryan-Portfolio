@@ -23,21 +23,30 @@ export function Hero() {
         return;
       }
 
-      gsap.fromTo(".hero-line-inner",
-        { y: "110%", opacity: 0 },
-        {
-          y: "0%", opacity: 1,
-          duration: 1.1,
-          ease: "power4.out",
-          stagger: 0.08,
-          delay: 1.8,
-        }
-      );
+      function playReveal() {
+        gsap.fromTo(".hero-line-inner",
+          { y: "110%", opacity: 0 },
+          {
+            y: "0%", opacity: 1,
+            duration: 1.1,
+            ease: "power4.out",
+            stagger: 0.08,
+          }
+        );
 
-      gsap.fromTo(metaRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 2.1 }
-      );
+        gsap.fromTo(metaRef.current,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 0.25 }
+        );
+      }
+
+      // Fire after the intro overlay finishes sliding away
+      window.addEventListener("intro:done", playReveal, { once: true });
+
+      // Fallback: if intro was skipped or already done, reveal immediately
+      if (!document.documentElement.hasAttribute("data-loading")) {
+        playReveal();
+      }
     }, sectionRef);
 
     return function cleanup() { ctx.revert(); };
