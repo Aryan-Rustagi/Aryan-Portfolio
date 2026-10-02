@@ -30,13 +30,13 @@ export function Hero() {
           duration: 1.1,
           ease: "power4.out",
           stagger: 0.08,
-          delay: 2.0,
+          delay: 1.8,
         }
       );
 
       gsap.fromTo(metaRef.current,
         { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 2.4 }
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 2.1 }
       );
     }, sectionRef);
 

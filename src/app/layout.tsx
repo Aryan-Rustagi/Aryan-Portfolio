@@ -58,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-loading="true">
       <body className={`${interTight.variable} ${jetbrainsMono.variable}`}>
         <CustomCursor />
         <PageTransition>{children}</PageTransition>

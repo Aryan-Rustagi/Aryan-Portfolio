@@ -240,7 +240,27 @@ html.lenis, html.lenis body { height: auto; }
 
 /* ═══════════════════════════════════════════
    INTRO LOADER OVERLAY
+   CSS-first: overlay is visible immediately on
+   first paint via the `data-loading` attribute
+   set server-side on <html>. No JS flash.
    ═══════════════════════════════════════════ */
+
+/*
+  While `data-loading` is on <html>, paint a solid
+  dark cover over everything so users never see the
+  bare/unstyled page before the loader runs.
+  The .intro-overlay React component then takes over
+  for the animated counter + slide-up.
+*/
+html[data-loading]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background-color: var(--fg);
+  pointer-events: none;
+}
+
 .intro-overlay {
   position: fixed;
   inset: 0;
@@ -250,6 +270,8 @@ html.lenis, html.lenis body { height: auto; }
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  /* Ensure overlay is always on top during load */
+  will-change: transform;
 }
 
 .intro-counter {
