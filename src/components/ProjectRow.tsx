@@ -19,7 +19,7 @@ export function ProjectRow({
   project: Project;
   index: number;
 }) {
-  const rowRef = useRef<HTMLAnchorElement>(null);
+  const rowRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
   const mouse = useRef({ x: 0, y: 0 });
