@@ -60,7 +60,7 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
    3. THREE.JS — INTERACTIVE PARTICLE UNIVERSE
 ────────────────────────────────────────────────────────────────── */
 (function initThree() {
-  const canvas = document.getElementById('heroCanvas');
+  const canvas = document.getElementById('spaceCanvas');
   if (!canvas || typeof THREE === 'undefined') return;
 
   /* Scene */
@@ -78,12 +78,11 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
   const starSizes     = new Float32Array(STAR_COUNT);
 
   const palette = [
-    new THREE.Color(0x7c3aed), // purple
-    new THREE.Color(0xa78bfa), // purple-light
-    new THREE.Color(0x06b6d4), // cyan
-    new THREE.Color(0x67e8f9), // cyan-light
     new THREE.Color(0xffffff), // white
-    new THREE.Color(0x10b981), // green
+    new THREE.Color(0xdbeafe), // light blue-white
+    new THREE.Color(0xfef08a), // light yellow-white
+    new THREE.Color(0x93c5fd), // pale blue
+    new THREE.Color(0xffffff), // white
   ];
 
   for (let i = 0; i < STAR_COUNT; i++) {
@@ -105,47 +104,75 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
   starGeo.setAttribute('size', new THREE.BufferAttribute(starSizes, 1));
 
   const starMat = new THREE.PointsMaterial({
-    size: 0.04,
+    size: 0.08,
     vertexColors: true,
     sizeAttenuation: true,
     transparent: true,
-    opacity: 0.85,
+    opacity: 1.0,
     depthWrite: false,
   });
 
   const stars = new THREE.Points(starGeo, starMat);
   scene.add(stars);
 
-  /* ── Floating Geometry ── */
-  function makeFloat(geo, color, x, y, z, scale = 1) {
-    const mat = new THREE.MeshBasicMaterial({
-      color,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.18,
-    });
-    const mesh = new THREE.Mesh(geo, mat);
-    mesh.position.set(x, y, z);
-    mesh.scale.setScalar(scale);
-    scene.add(mesh);
-    return mesh;
-  }
+  /* ── Realistic Space Lighting & Planets ── */
+  
+  // Lighting
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+  scene.add(ambientLight);
 
-  const floaters = [
-    makeFloat(new THREE.IcosahedronGeometry(0.5, 0), 0x7c3aed, -3.5, 1.5, -1, 1),
-    makeFloat(new THREE.OctahedronGeometry(0.4, 0),  0x06b6d4,  3.2,-1.2, -0.5, 1),
-    makeFloat(new THREE.TorusGeometry(0.35, 0.1, 8, 20), 0xa78bfa, 2.8, 1.8, -1.5, 1),
-    makeFloat(new THREE.TetrahedronGeometry(0.4, 0), 0x10b981, -3, -1.5, -1, 1),
-    makeFloat(new THREE.IcosahedronGeometry(0.3, 0), 0x67e8f9,  0,  2.5, -2, 1),
-  ];
+  const sunLight = new THREE.DirectionalLight(0xffffff, 3.0);
+  sunLight.position.set(-5, 3, 5);
+  scene.add(sunLight);
 
-  /* ── Mouse Interaction ── */
+  const textureLoader = new THREE.TextureLoader();
+
+  // Realistic Earth
+  const earthGeo = new THREE.SphereGeometry(2.6, 64, 64);
+  const earthMat = new THREE.MeshStandardMaterial({
+    map: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg'),
+    roughness: 0.6,
+    metalness: 0.1
+  });
+  const planet = new THREE.Mesh(earthGeo, earthMat);
+  planet.position.set(3.5, 0.5, -2.5);
+  scene.add(planet);
+
+  // Earth Atmosphere Glow
+  const atmosGeo = new THREE.SphereGeometry(2.68, 64, 64);
+  const atmosMat = new THREE.MeshBasicMaterial({
+    color: 0x4da6ff,
+    transparent: true,
+    opacity: 0.25,
+    side: THREE.BackSide,
+    blending: THREE.AdditiveBlending
+  });
+  const atmosphere = new THREE.Mesh(atmosGeo, atmosMat);
+  planet.add(atmosphere);
+
+  // Realistic Moon
+  const moonGeo = new THREE.SphereGeometry(0.7, 32, 32);
+  const moonMat = new THREE.MeshStandardMaterial({
+    map: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/moon_1024.jpg'),
+    roughness: 0.8,
+    metalness: 0.0
+  });
+  const moon = new THREE.Mesh(moonGeo, moonMat);
+  moon.position.set(-3.8, -1.5, -1);
+  scene.add(moon);
+
+  /* ── Mouse & Scroll Interaction ── */
   const mouse = { x: 0, y: 0 };
   let   targetX = 0, targetY = 0;
+  let   scrollY = 0;
 
   window.addEventListener('mousemove', e => {
     mouse.x = (e.clientX / window.innerWidth  - 0.5) * 2;
     mouse.y = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  window.addEventListener('scroll', () => {
+    scrollY = window.scrollY;
   });
 
   /* ── Resize ── */
@@ -157,26 +184,31 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
   });
 
   /* ── Animate ── */
-  let frameId;
   const clock = new THREE.Clock();
 
   function animate() {
-    frameId = requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
     const elapsed = clock.getElapsedTime();
 
     /* Smooth mouse follow */
     targetX += (mouse.x * 0.15 - targetX) * 0.05;
     targetY += (mouse.y * 0.08 - targetY) * 0.05;
 
-    stars.rotation.y  = elapsed * 0.018 + targetX * 0.3;
-    stars.rotation.x  = elapsed * 0.008 + targetY * 0.15;
+    /* Parallax based on scroll */
+    const scrollOffset = scrollY * 0.0005;
 
-    /* Animate floaters */
-    floaters.forEach((m, i) => {
-      m.rotation.x = elapsed * (0.2 + i * 0.07);
-      m.rotation.y = elapsed * (0.3 + i * 0.05);
-      m.position.y += Math.sin(elapsed * 0.5 + i * 1.2) * 0.002;
-    });
+    stars.rotation.y  = elapsed * 0.018 + targetX * 0.3;
+    stars.rotation.x  = elapsed * 0.008 + targetY * 0.15 + scrollOffset;
+
+    /* Animate Space Elements */
+    planet.rotation.y = elapsed * 0.05;
+    planet.rotation.z = elapsed * 0.02;
+    planet.position.y = 0.5 + Math.sin(elapsed * 0.6) * 0.15 + scrollOffset * 2;
+    
+    moon.rotation.y = elapsed * 0.2;
+    moon.rotation.x = elapsed * 0.15;
+    moon.position.y = -1.5 + Math.cos(elapsed * 0.8) * 0.1 + scrollOffset * 2.5;
+    moon.position.x = -3.5 + Math.sin(elapsed * 0.4) * 0.2;
 
     /* Camera subtle drift */
     camera.position.x += (targetX * 0.3 - camera.position.x) * 0.04;
@@ -184,17 +216,6 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
     renderer.render(scene, camera);
   }
-
-  /* Stop animating when hero is off-screen */
-  ScrollTrigger.create({
-    trigger: '#hero',
-    start: 'top top',
-    end: 'bottom top',
-    onEnter: () => { if (!frameId) animate(); },
-    onLeave: () => { cancelAnimationFrame(frameId); frameId = null; },
-    onEnterBack: () => { if (!frameId) animate(); },
-    onLeaveBack: () => { cancelAnimationFrame(frameId); frameId = null; },
-  });
 
   animate();
 })();
@@ -518,17 +539,7 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
     });
   }
 
-  /* ── 3D Floating geometry scroll ── */
-  gsap.to('#heroCanvas', {
-    opacity: 0,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '#hero',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: true,
-    },
-  });
+  /* Removed canvas fade-out for persistent space background */
 
   /* ── Contact form ── */
   const contactForm = document.querySelector('.contact-form');
